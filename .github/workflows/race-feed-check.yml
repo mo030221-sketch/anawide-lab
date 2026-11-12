@@ -1,0 +1,64 @@
+
+name: Race feed validation
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
+  push:
+    paths:
+      - "race-feed.json"
+      - ".github/workflows/race-feed-check.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate-feed:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Validate race feed
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path("race-feed.json")
+          if not path.exists():
+              raise SystemExit("race-feed.json is missing")
+
+          feed = json.loads(path.read_text(encoding="utf-8"))
+          races = feed.get("races")
+
+          if not isinstance(races, dict) or not races:
+              raise SystemExit("No races found in feed")
+
+          total = 0
+          for race_key, race in races.items():
+              horses = race.get("horses") if isinstance(race, dict) else None
+              if not isinstance(horses, list) or not horses:
+                  raise SystemExit(f"{race_key}: horses list is missing")
+
+              numbers = []
+              for horse in horses:
+                  if not isinstance(horse, dict):
+                      raise SystemExit(f"{race_key}: invalid horse row")
+                  number = horse.get("number")
+                  name = horse.get("name")
+                  if not isinstance(number, int) or number < 1:
+                      raise SystemExit(f"{race_key}: invalid horse number")
+                  if not isinstance(name, str) or not name.strip():
+                      raise SystemExit(f"{race_key}: missing horse name")
+                  numbers.append(number)
+
+              if sorted(numbers) != list(range(1, len(numbers) + 1)):
+                  raise SystemExit(f"{race_key}: horse numbers must be continuous from 1")
+              total += len(horses)
+
+          print(f"Feed OK: {len(races)} race(s), {total} horse row(s)")
+          print(f"Feed timestamp: {feed.get('updatedAt', 'not supplied')}")
+          print("Validation complete. No live data was fetched.")
+          PY
