@@ -1,0 +1,100 @@
+{
+  "updatedAt": "2026-11-13（テストデータ・過去レース）",
+  "races": {
+    "2026-11-08|東京|11": {
+      "raceTitle": "アルゼンチン共和国杯（テスト）",
+      "horses": [
+        {
+          "number": 1,
+          "name": "ジーティーダーリン",
+          "frame": 1
+        },
+        {
+          "number": 2,
+          "name": "ビザンチンドリーム",
+          "frame": 1
+        },
+        {
+          "number": 3,
+          "name": "マイネルエンペラー",
+          "frame": 2
+        },
+        {
+          "number": 4,
+          "name": "ミラージュナイト",
+          "frame": 2
+        },
+        {
+          "number": 5,
+          "name": "ドゥラドーレス",
+          "frame": 3
+        },
+        {
+          "number": 6,
+          "name": "ファミリータイム",
+          "frame": 3
+        },
+        {
+          "number": 7,
+          "name": "ファイアンクランツ",
+          "frame": 4
+        },
+        {
+          "number": 8,
+          "name": "ジョイボーイ",
+          "frame": 4
+        },
+        {
+          "number": 9,
+          "name": "レッドバンデ",
+          "frame": 5
+        },
+        {
+          "number": 10,
+          "name": "ボーンディスウェイ",
+          "frame": 5
+        },
+        {
+          "number": 11,
+          "name": "ウェストナウ",
+          "frame": 6
+        },
+        {
+          "number": 12,
+          "name": "メイショウゲキリン",
+          "frame": 6
+        },
+        {
+          "number": 13,
+          "name": "マイネルカンパーナ",
+          "frame": 7
+        },
+        {
+          "number": 14,
+          "name": "ミクニインスパイア",
+          "frame": 7
+        },
+        {
+          "number": 15,
+          "name": "ホーエリート",
+          "frame": 7
+        },
+        {
+          "number": 16,
+          "name": "キングズパレス",
+          "frame": 8
+        },
+        {
+          "number": 17,
+          "name": "キングスコール",
+          "frame": 8
+        },
+        {
+          "number": 18,
+          "name": "ミステリーウェイ",
+          "frame": 8
+        }
+      ]
+    }
+  }
+}
